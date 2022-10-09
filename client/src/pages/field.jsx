@@ -5,8 +5,8 @@ import style from './page.module.scss';
 
 const Field = () => {
     return (
-        <div className={style.Page}>
-            <PoketmonField></PoketmonField>
+        <div>
+            <PoketmonField />
         </div>
     );
 }
