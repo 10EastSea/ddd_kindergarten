@@ -24,11 +24,12 @@ const FIELD_CONSTANTS = {
 const firstX = (FIELD_CONSTANTS.MAX_WIDTH - FIELD_CONSTANTS.IMG_WIDTH) / 2;
 const firstY = (FIELD_CONSTANTS.MAX_HEIGHT - FIELD_CONSTANTS.IMG_HEIGHT) / 2;
 
-const PokemonField = () => {
+const Pokemon = ({submitMovedata, otherPos, myId}) => {
 	const canvasRef = useRef(null);
 	const requestAnimationRef = useRef(null);
 	const positionRef = useRef({ x: firstX, y: firstY });
-
+	
+	const [otherLastPos, setOtherLastPos] = useState({});
 	const [pressedKey, setPressedKey] = useState(null);
 
 	const move = (x, y) => {
@@ -50,8 +51,23 @@ const PokemonField = () => {
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
 			context.drawImage(charmanderImg, positionRef.current.x, positionRef.current.y);
-		};
-
+			
+			var isEmpty = Object.entries(otherPos).length === 0;
+			if(!isEmpty && otherPos.userId != myId) {
+				setOtherLastPos({x: otherPos.moveData.x, y: otherPos.moveData.y})
+				const squirtleImg = new Image();
+				squirtleImg.src = squirtleImgSrc;
+				context.drawImage(squirtleImg, otherLastPos.x, otherLastPos.y);
+			}
+			
+			isEmpty = Object.entries(otherLastPos).length === 0;
+			if(!isEmpty) {
+				const squirtleImg = new Image();
+				squirtleImg.src = squirtleImgSrc;
+				context.drawImage(squirtleImg, otherLastPos.x, otherLastPos.y);
+			}
+		}; 
+		
 		handleKey();
 		requestAnimationRef.current = requestAnimationFrame(render);
 	};
@@ -60,15 +76,19 @@ const PokemonField = () => {
 		switch (pressedKey) {
 			case FIELD_CONSTANTS.KEY_LEFT:
 				move(-1 * FIELD_CONSTANTS.SPEED, 0);
+				submitMovedata(positionRef.current); // 서버에 정보전송
 				return;
 			case FIELD_CONSTANTS.KEY_DOWN:
 				move(0, -1 * FIELD_CONSTANTS.SPEED);
+				submitMovedata(positionRef.current); // 서버에 정보전송
 				return;
 			case FIELD_CONSTANTS.KEY_RIGHT:
 				move(FIELD_CONSTANTS.SPEED, 0);
+				submitMovedata(positionRef.current); // 서버에 정보전송
 				return;
 			case FIELD_CONSTANTS.KEY_UP:
 				move(0, FIELD_CONSTANTS.SPEED);
+				submitMovedata(positionRef.current); // 서버에 정보전송
 				return;
 			case null:
 				return;
@@ -103,4 +123,4 @@ const PokemonField = () => {
 	);
 };
 
-export default PokemonField;
+export default Pokemon;

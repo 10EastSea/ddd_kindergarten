@@ -1,12 +1,16 @@
 import React from 'react';
-import PoketmonField from '../components/PokemonField';
+import { ToastContainer } from "react-toastify";
+
+import FieldContainer from '../containers/Field';
 
 import style from './page.module.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Field = () => {
     return (
-        <div>
-            <PoketmonField />
+        <div className={style.Page}>
+            <FieldContainer /> 
+            <ToastContainer/>
         </div>
     );
 }

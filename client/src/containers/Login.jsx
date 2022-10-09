@@ -5,7 +5,7 @@ import LoginComp from '../components/Login';
 const Login = () => {
     const navigate = useNavigate();
     const enterField = ({nickname, fieldId}) => {
-        navigate(`/${fieldId}/${nickname}`)
+        navigate(`/game-field/${fieldId}/${nickname}`)
     }
     
     return <LoginComp enterField={enterField} />

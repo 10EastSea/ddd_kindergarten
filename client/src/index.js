@@ -40,7 +40,7 @@ const App = () => {
 			<SocketContextProvider>
 				<Routes>
 					<Route path="/" element={<Login />} />
-					<Route path="/:roomId/:userId" element={<Field />} />
+					<Route path="/game-field/:fieldId/:userId" element={<Field />} />
 				</Routes>
 			</SocketContextProvider>
 		</BrowserRouter>

@@ -45,14 +45,24 @@ io.on('connection', (socket) => {
     console.log('socket disconnected');
   });
 
-  socket.on('JOIN_ROOM', ({roomId, userId}) => {
-      console.log({roomId, userId});
-      socket.join(roomId);
-  })
+  // socket.on('JOIN_ROOM', ({roomId, userId}) => {
+  //     console.log({roomId, userId});
+  //     socket.join(roomId);
+  // })
     
-  socket.on('SEND_MESSAGE', ({roomId, userId, message}) => {
-      console.log({roomId, userId, message});
-      io.to(roomId).emit('UPDATE_MESSAGE', {userId, message});
-  })
+  // socket.on('SEND_MESSAGE', ({roomId, userId, message}) => {
+  //     console.log({roomId, userId, message});
+  //     io.to(roomId).emit('UPDATE_MESSAGE', {userId, message});
+  // })
+	
+	socket.on('JOIN_FIELD', ({fieldId, userId}) => {
+		console.log({fieldId, userId});
+		socket.join(fieldId);
+	})
+	
+	socket.on('SEND_MOVEDATA', ({fieldId, userId, moveData}) => {
+		console.log({fieldId, userId, moveData});
+		io.to(fieldId).emit('UPDATE_MOVEDATA', {userId, moveData});
+	})
     
 });

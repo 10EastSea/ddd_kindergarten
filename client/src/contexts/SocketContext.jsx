@@ -13,20 +13,39 @@ export const SocketContextProvider = ({children}) => {
         }
     }, [])
     
-    const joinRoom = ({roomId, userId}) => {
-        socket.emit('JOIN_ROOM', {userId, roomId}); 
+    // const joinRoom = ({roomId, userId}) => {
+    //     socket.emit('JOIN_ROOM', {userId, roomId}); 
+    // }
+    
+    // const sendMessage = ({roomId, userId, message}) => {
+    //     socket.emit('SEND_MESSAGE', {roomId, userId, message});
+    // }
+    
+    // const updateMessage = (func) => {
+    //     socket.on('UPDATE_MESSAGE', (msg) => func(msg));
+    // }
+    
+    // return (
+    //     <SocketContext.Provider value={{joinRoom, sendMessage, updateMessage}}>
+    //         {children}
+    //     </SocketContext.Provider>
+    // );
+	
+	const joinField = ({fieldId, userId}) => {
+        socket.emit('JOIN_FIELD', {userId, fieldId}); 
     }
     
-    const sendMessage = ({roomId, userId, message}) => {
-        socket.emit('SEND_MESSAGE', {roomId, userId, message});
+    const sendMovedata = ({fieldId, userId, moveData}) => {
+		// console.log({fieldId, userId, moveData});
+        socket.emit('SEND_MOVEDATA', {fieldId, userId, moveData});
     }
     
-    const updateMessage = (func) => {
-        socket.on('UPDATE_MESSAGE', (msg) => func(msg));
+    const updateMovedata = (func) => {
+        socket.on('UPDATE_MOVEDATA', (moveData) => func(moveData));
     }
     
     return (
-        <SocketContext.Provider value={{joinRoom, sendMessage, updateMessage}}>
+        <SocketContext.Provider value={{joinField, sendMovedata, updateMovedata}}>
             {children}
         </SocketContext.Provider>
     );
