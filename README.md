@@ -1,6 +1,10 @@
 # DDD Kindergarten
 
-2인 플레이 온라인 웹 기반 게임 (서버에 2명만 접속 가능)
+2인 플레이 온라인 웹 기반 메타버스 게임 (서버에 2명만 접속 가능)
+
+## Dev Tools
+- Client: React.js (Web)
+- Server: Express.js
 
 ## Version
 - `Node.js` : 16.15.0
@@ -20,3 +24,6 @@ module.exports = {
 ```
 5. `cd client && npm i && cd ../server && npm i && cd ..` 을 실행한다.
 6. `./start.sh` 를 실행한다.
+
+## References
+[goormIDE](https://blog.goorm.io/chatweb/?_ga=2.186907880.1911962851.1665413799-1626079264.1628389895)
