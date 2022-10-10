@@ -13,10 +13,10 @@
 3. server 경로에 `config/default.js` 파일을 생성해준다.
 4. 해당 파일에 다음과 같이 설정해준다.
 ```
-	module.exports = {
-		...
-    	client: "" //1번에서 설정한 클라이언트 URL과 같이 설정한다.
-	}
+module.exports = {
+	...
+	client: "" //1번에서 설정한 클라이언트 URL과 같이 설정한다.
+}
 ```
 5. `cd client && npm i && cd ../server && npm i && cd ..` 을 실행한다.
 6. `./start.sh` 를 실행한다.
